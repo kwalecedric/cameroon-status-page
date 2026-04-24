@@ -8,36 +8,117 @@
 </head>
 <body>
 
-  <div class="container">
-
-    <!-- HEADER -->
-    <div class="header">
-      <div>
-        <h1>Cameroon Fintech Status</h1>
-        <p class="subtitle">Real-time status of mobile money & banking services in Cameroon</p>
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="brand-dot"></span>
+        Cameroon Fintech Status
       </div>
-      <div id="overall-badge" class="overall-badge"></div>
+      <div class="nav-links">
+        <a href="#" class="nav-link active" onclick="showPage('home', this)">Home</a>
+        <a href="#" class="nav-link" onclick="showPage('incidents', this)">Incidents</a>
+        <a href="#" class="nav-link" onclick="showPage('about', this)">About</a>
+      </div>
     </div>
+  </nav>
 
-    <!-- LAST CHECKED TIME -->
-    <p class="last-checked" id="last-checked"></p>
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page active">
+    <div class="container">
 
-    <!-- SERVICE CARDS -->
-    <div class="services-grid" id="services-grid"></div>
+      <div class="hero">
+        <div>
+          <h1>Service Status</h1>
+          <p class="subtitle">Live monitoring of mobile money & banking in Cameroon</p>
+        </div>
+        <div class="hero-right">
+          <div id="overall-badge" class="overall-badge"></div>
+          <div class="clock-box">
+            <span class="clock-label">Live</span>
+            <span id="live-clock" class="clock-time"></span>
+          </div>
+        </div>
+      </div>
 
-    <!-- INCIDENT LOG -->
-    <div class="section-title">Recent incidents</div>
-    <div id="incident-log"></div>
+      <div class="refresh-bar">
+        <span id="refresh-msg">Auto-refreshing in <strong id="countdown">60</strong>s</span>
+        <button onclick="manualRefresh()" class="refresh-btn">Refresh now</button>
+      </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-      Built to help Cameroonians know when fintech services are down &mdash;
-      <a href="https://kwalecedric.github.io/Transaction-Tracker/" target="_blank">
-        See also: Transaction Tracker
-      </a>
+      <div class="search-wrap">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search services..."
+          oninput="renderServices()"
+        />
+      </div>
+
+      <div class="summary-grid" id="summary-grid"></div>
+      <div class="services-grid" id="services-grid"></div>
+
     </div>
-
   </div>
+
+  <!-- INCIDENTS PAGE -->
+  <div id="page-incidents" class="page">
+    <div class="container">
+      <h1 style="margin-bottom:0.5rem">Incident log</h1>
+      <p class="subtitle" style="margin-bottom:2rem">All reported disruptions and resolutions</p>
+
+      <div class="inc-filters">
+        <button class="inc-filter-btn active" onclick="filterIncidents('all', this)">All</button>
+        <button class="inc-filter-btn" onclick="filterIncidents('outage', this)">Outage</button>
+        <button class="inc-filter-btn" onclick="filterIncidents('degraded', this)">Degraded</button>
+        <button class="inc-filter-btn" onclick="filterIncidents('resolved', this)">Resolved</button>
+      </div>
+
+      <div id="incident-log"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div id="page-about" class="page">
+    <div class="container">
+      <h1 style="margin-bottom:0.5rem">About this project</h1>
+      <p class="subtitle" style="margin-bottom:2rem">Why this exists and who built it</p>
+
+      <div class="about-card">
+        <div class="about-section">
+          <h2>The problem</h2>
+          <p>Every day, millions of Cameroonians use Sara Money, MTN Mobile Money, Orange Money, Express Union and others to pay bills, send money, and run businesses. When these services fail, users have no way to know whether the problem is on their phone, their network, or the provider's server. This creates panic, distrust, and financial loss.</p>
+        </div>
+        <div class="about-section">
+          <h2>The solution</h2>
+          <p>Cameroon Fintech Status monitors the major financial services in Cameroon and provides a single, clear view of what is working and what is not — in real time. No more guessing. No more panic.</p>
+        </div>
+        <div class="about-section">
+          <h2>Built by</h2>
+          <p>This platform was designed and built by <strong>Ngong Kwale Cedric</strong>, a self-taught developer from Cameroon, as part of a broader effort to bring transparency and trust to digital financial services in Central Africa.</p>
+        </div>
+        <div class="about-section">
+          <h2>Also see</h2>
+          <p>
+            <a href="https://kwalecedric.github.io/Transaction-Tracker/" target="_blank" class="about-link">
+              Transaction Tracker — know exactly what happened to your money
+            </a>
+          </p>
+        </div>
+        <div class="about-section">
+          <h2>Contact</h2>
+          <p>To report an incident, suggest a service, or discuss a partnership:</p>
+          <a href="https://github.com/kwalecedric" target="_blank" class="about-link">github.com/kwalecedric</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    Built for Cameroon · <a href="https://kwalecedric.github.io/Transaction-Tracker/" target="_blank">Transaction Tracker</a> · <a href="https://github.com/kwalecedric" target="_blank">GitHub</a>
+  </footer>
 
   <script src="app.js"></script>
 </body>
