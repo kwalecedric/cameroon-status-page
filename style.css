@@ -1,0 +1,221 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  color: #111;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #888;
+}
+
+.overall-badge {
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.overall-badge.all-good {
+  background: #e6f4ed;
+  color: #1a7a4a;
+  border-color: #a8d5b5;
+}
+
+.overall-badge.issues {
+  background: #fdecea;
+  color: #b00020;
+  border-color: #f5a8a8;
+}
+
+.overall-badge.some {
+  background: #fff7e6;
+  color: #a06000;
+  border-color: #f0cc80;
+}
+
+/* LAST CHECKED */
+.last-checked {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+/* SERVICE CARDS GRID */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.service-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.service-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.service-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.service-type {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.operational { background: #1a7a4a; }
+.status-dot.degraded    { background: #a06000; }
+.status-dot.outage      { background: #b00020; }
+
+.service-status-label {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.service-status-label.operational {
+  background: #e6f4ed;
+  color: #1a7a4a;
+  border-color: #a8d5b5;
+}
+
+.service-status-label.degraded {
+  background: #fff7e6;
+  color: #a06000;
+  border-color: #f0cc80;
+}
+
+.service-status-label.outage {
+  background: #fdecea;
+  color: #b00020;
+  border-color: #f5a8a8;
+}
+
+.service-note {
+  font-size: 12px;
+  color: #888;
+}
+
+/* UPTIME BAR */
+.uptime-bar {
+  display: flex;
+  gap: 2px;
+  margin-top: 12px;
+}
+
+.uptime-block {
+  flex: 1;
+  height: 6px;
+  border-radius: 2px;
+}
+
+.uptime-block.up      { background: #1a7a4a; }
+.uptime-block.partial { background: #e0a020; }
+.uptime-block.down    { background: #b00020; }
+
+.uptime-label {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+/* INCIDENT LOG */
+.section-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.incident-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-left: 3px solid;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 10px;
+}
+
+.incident-card.outage   { border-left-color: #b00020; }
+.incident-card.degraded { border-left-color: #e0a020; }
+.incident-card.resolved { border-left-color: #1a7a4a; }
+
+.incident-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.incident-meta {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.incident-desc {
+  font-size: 13px;
+  color: #555;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 2rem;
+  font-size: 12px;
+  color: #aaa;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer a {
+  color: #555;
+}
