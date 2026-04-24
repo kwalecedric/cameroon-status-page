@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="navbar">
     <div class="nav-inner">
       <div class="nav-brand">
@@ -17,6 +16,7 @@
       </div>
       <div class="nav-links">
         <a href="#" class="nav-link active" onclick="showPage('home', this)">Home</a>
+        <a href="#" class="nav-link" onclick="showPage('logs', this)">Live Logs</a>
         <a href="#" class="nav-link" onclick="showPage('incidents', this)">Incidents</a>
         <a href="#" class="nav-link" onclick="showPage('about', this)">About</a>
       </div>
@@ -26,7 +26,6 @@
   <!-- HOME PAGE -->
   <div id="page-home" class="page active">
     <div class="container">
-
       <div class="hero">
         <div>
           <h1>Service Status</h1>
@@ -42,23 +41,66 @@
       </div>
 
       <div class="refresh-bar">
-        <span id="refresh-msg">Auto-refreshing in <strong id="countdown">60</strong>s</span>
+        <span>Auto-refreshing in <strong id="countdown">60</strong>s</span>
         <button onclick="manualRefresh()" class="refresh-btn">Refresh now</button>
       </div>
 
       <div class="search-wrap">
-        <input
-          type="text"
-          id="search-input"
-          class="search-input"
-          placeholder="Search services..."
-          oninput="renderServices()"
-        />
+        <input type="text" id="search-input" class="search-input"
+          placeholder="Search services..." oninput="renderServices()"/>
       </div>
 
       <div class="summary-grid" id="summary-grid"></div>
       <div class="services-grid" id="services-grid"></div>
 
+      <!-- REPORT SECTION -->
+      <div class="report-section">
+        <h2>Report an issue</h2>
+        <p class="subtitle" style="margin-bottom:1rem">Experiencing a problem? Let the community know.</p>
+        <div class="report-form">
+          <select id="report-service" class="report-select">
+            <option value="">Select a service...</option>
+            <option>Sara Money</option>
+            <option>MTN Mobile Money</option>
+            <option>Orange Money</option>
+            <option>Express Union</option>
+            <option>CCA Bank</option>
+            <option>Yoomee Mobile</option>
+          </select>
+          <select id="report-type" class="report-select">
+            <option value="">Type of issue...</option>
+            <option>Cannot log in</option>
+            <option>Transaction failed</option>
+            <option>Funds debited but not received</option>
+            <option>OTP not received</option>
+            <option>App not loading</option>
+            <option>Slow transactions</option>
+            <option>Other</option>
+          </select>
+          <textarea id="report-desc" class="report-textarea"
+            placeholder="Describe the issue briefly (optional)..." rows="2"></textarea>
+          <button onclick="submitReport()" class="report-btn">Submit report</button>
+        </div>
+        <div id="report-feedback" class="report-feedback"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LIVE LOGS PAGE -->
+  <div id="page-logs" class="page">
+    <div class="container">
+      <div class="hero">
+        <div>
+          <h1>Live Logs</h1>
+          <p class="subtitle">Real-time community reports — updates instantly as users submit</p>
+        </div>
+        <div class="log-live-badge">
+          <span class="log-dot"></span> LIVE
+        </div>
+      </div>
+      <div id="logs-count" class="logs-count"></div>
+      <div id="live-logs-list"></div>
     </div>
   </div>
 
@@ -67,14 +109,12 @@
     <div class="container">
       <h1 style="margin-bottom:0.5rem">Incident log</h1>
       <p class="subtitle" style="margin-bottom:2rem">All reported disruptions and resolutions</p>
-
       <div class="inc-filters">
         <button class="inc-filter-btn active" onclick="filterIncidents('all', this)">All</button>
         <button class="inc-filter-btn" onclick="filterIncidents('outage', this)">Outage</button>
         <button class="inc-filter-btn" onclick="filterIncidents('degraded', this)">Degraded</button>
         <button class="inc-filter-btn" onclick="filterIncidents('resolved', this)">Resolved</button>
       </div>
-
       <div id="incident-log"></div>
     </div>
   </div>
@@ -84,7 +124,6 @@
     <div class="container">
       <h1 style="margin-bottom:0.5rem">About this project</h1>
       <p class="subtitle" style="margin-bottom:2rem">Why this exists and who built it</p>
-
       <div class="about-card">
         <div class="about-section">
           <h2>The problem</h2>
@@ -92,7 +131,7 @@
         </div>
         <div class="about-section">
           <h2>The solution</h2>
-          <p>Cameroon Fintech Status monitors the major financial services in Cameroon and provides a single, clear view of what is working and what is not — in real time. No more guessing. No more panic.</p>
+          <p>Cameroon Fintech Status monitors the major financial services in Cameroon and provides a single, clear view of what is working and what is not — in real time. Community reports are collected live and displayed instantly.</p>
         </div>
         <div class="about-section">
           <h2>Built by</h2>
@@ -100,11 +139,9 @@
         </div>
         <div class="about-section">
           <h2>Also see</h2>
-          <p>
-            <a href="https://kwalecedric.github.io/Transaction-Tracker/" target="_blank" class="about-link">
-              Transaction Tracker — know exactly what happened to your money
-            </a>
-          </p>
+          <a href="https://kwalecedric.github.io/Transaction-Tracker/" target="_blank" class="about-link">
+            Transaction Tracker — know exactly what happened to your money
+          </a>
         </div>
         <div class="about-section">
           <h2>Contact</h2>
@@ -115,11 +152,13 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
-    Built for Cameroon · <a href="https://kwalecedric.github.io/Transaction-Tracker/" target="_blank">Transaction Tracker</a> · <a href="https://github.com/kwalecedric" target="_blank">GitHub</a>
+    Built for Cameroon ·
+    <a href="https://kwalecedric.github.io/Transaction-Tracker/" target="_blank">Transaction Tracker</a> ·
+    <a href="https://github.com/kwalecedric" target="_blank">GitHub</a>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- FIREBASE -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
